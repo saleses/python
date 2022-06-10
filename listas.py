@@ -121,7 +121,7 @@ print(lista5)
 lista5.pop(2)
 print(lista5)
 
-Remoção de todos elementos de uma lista (esvaziar)
+# Remoção de todos elementos de uma lista (esvaziar)
 print(lista5)
 lista5.clear()
 print(lista5)
