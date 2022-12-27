@@ -45,7 +45,7 @@ for numero in numeros:
 
 print(numeros_dobrados)
 
-# List comprehensions
+### List comprehensions
 print([numero * 2 for numero in numeros])
 
 '''
@@ -142,4 +142,77 @@ velha = [[ 'X' if numero % 2 == 0 else '0' for numero in range(1, 4)] for valor 
 # Gerar valores iniciais 
 print([['*' for i in range(1, 4)] for j in range(1, 4)])
 
+### Dictionary Comprehension
+
+"""
+Dictionary Comprehension
+- o princípio é o mesmo da list comprehension
+
+Atenção: 
+- para criar uma lista: 
+lista = [1, 2, 3. 4]
+
+- para criar uma tupla: 
+tupla = (1, 2, 3, 4) # 1, 2, 3, 4
+
+- para criar um set (conjunto)
+conjunto = {1, 2, 3, 4}
+
+- para criar um dicionário
+dicionario = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+
+# Sintaxe de um dicionário
+{chave:valor for valor in iterável}
+
+"""
+# Exemplos 1
+numeros = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+# formato Dictionary Comprehension
+quadrado = {chave:valor ** 2 for chave, valore in numeros.itens()}
+print(quadrado)
+
+# Exemplos 2 -> para cada valor de uma lista, ou tupla, ou set, faça...
+numeros = [1, 2, 3. 4, 5]
+quadrados = {valor: valor ** 2 for valor in numeros}
+
+# Atenção: importante respeitar as características de cada conceito: tupla, lista, set. etc.
+
+# Exemplos 3
+chaves = 'abcde'
+valores = [1, 2, 3, 4, 5]
+mistura = {chaves[i]: valores[i] for i in range(0, len(chaves))}
+print(mistura)
+
+# Exemplos 4 - Lógica condicional
+numeros = [1, 2, 3, 4, 5]
+res = {num:('par' if num % 2 == 0 else 'impar') for num in numeros}
+print(res)
+
+### Set Comprehension
+
+'''
+Set Comprehension
+- o princípio é o mesmo de list comprehension
+
+Lista = [1, 2, 3, 4, 5]
+Set = [1, 2, 3, 4, 5]
+'''
+
+# Exemplo 1 
+numeros = {num for num in range(1, 7)}
+print(numeros)
+
+# Exemplo 2
+numeros = {x ** 2 for x in range(10)}
+print(numeros)
+
+# Desafio: fazer alteração na estrutura acima para gerar um dicionário ao invés de set
+numeros = {x: x ** 2 for x in range(10)}
+print(numeros)
+
+# Exemplo 3
+letras = {letra for letra in 'Geek University'}
+print(letras)
+# obs.: observe no resultado que o conjunto não há repetição e nem ordenação
 
