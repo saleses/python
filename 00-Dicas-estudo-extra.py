@@ -24,3 +24,4 @@ print(list)    # com colchetes e separando elementos por vírgula
 print(' '.join(list))    # método join() dá a possibilidade de escolher um delimitador
 print(' Eu gosto '.join(my_list))    # neste caso, uma string de saída para cada elemento
 
+## ATENÇÃO!!! Testar os pedaços de códigos em terminal. Boa forma de debug
