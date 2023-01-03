@@ -1,14 +1,13 @@
-#######################################
-#  ESTRUTURAS LÓGICAS E CONDICIONAIS  #
-#######################################
+##  ESTRUTURAS LÓGICAS E CONDICIONAIS 
 
-# ESTRUTURAS CONDICIONAIS
-# 1. if, else, elif
+## 1. ESTRUTURAS CONDICIONAIS
+
+# IF, ELSE, ELIF 
 
 idade = 18
 if idade < 18:
-    print('Menor de idade')
-    print(idade)
+    print(f'Menor de idade: {idade}')
+    print(type(idade))
 elif idade == 18:
     print('Tem 18 anos')
 else:
@@ -20,33 +19,36 @@ Observações:
 - a condição finaliza com a linha em branco e sem identação
 '''
 
-# ESTRUTURAS LÓGICAS
+# 2. ESTRUTURAS LÓGICAS
+
 # AND, OR, NOT, IS
 
 '''
-Operadores unários: not
+Operador unário: not
 Operadores binários: and, or, is
 
-AND - conjunção
-OR  - disjunção
-NOT - negação
-IS  - afirmação
+and - conjunção
+or  - disjunção
+not - negação
+is  - afirmação
 
-Informação: 
+Dica: função tittle() 
 nome.title() -> altera a primeira letra para maiúscula
 '''
 
+##  Uso de variáveis booleanas em estrutura condicional
+#   Declaração de variáveis
 ativo = True
 logado = True
 
-# Testar a condição alterando o operador lógico
+# Teste de condição com conjunção 'and'
 if ativo and logado:
     print('Bem-vindo Fulano!')
 else:
     print('Você precisa ativar sua conta. Por favor, verifique seu e-mail')
 
 # Exemplo do operador IS -> aterar operador para teste
-if ativo:  # é igual a -> if is ativo:
+if ativo:                  # lê-se: se é igual a ativo:
     print(ativo is True)
 
 # Outro exemplo do operador is
