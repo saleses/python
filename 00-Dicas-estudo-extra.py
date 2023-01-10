@@ -25,3 +25,15 @@ print(' '.join(list))    # método join() dá a possibilidade de escolher um del
 print(' Eu gosto '.join(my_list))    # neste caso, uma string de saída para cada elemento
 
 ## ATENÇÃO!!! Testar os pedaços de códigos em terminal. Boa forma de debug
+
+### 1. Lista de funções built-in
+'''
+str() converte para string
+
+'''
+
+## Pronto para ação
+'''
+print(str(nome_variável)[::-1]) -> convervte inteiro para string e inverte ordem dos elementos
+
+'''
