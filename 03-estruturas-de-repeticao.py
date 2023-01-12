@@ -1,50 +1,68 @@
-#######################################
-#       ESTRUTURAS DE REPETIÇÃO       #
-#######################################
+###  ESTRUTURAS DE REPETIÇÃO
 
 # 1. Loop for
 '''
+Expressão: 
+
 for item in interavel:
     //execucao do loop
 
-O loop é usado para iterar sequências ou valores iterável
-Exemplos de iteráveis: 
-- string
-  nome = 'Estdos Unidos da América'
-- lista
-  lista = [1, 2, 3, 4, 5]
-- range
-  numeros = range(1,10)
-'''
+O loop é usado para iterar um determinado item em sequências
 
+Exemplos de iteráveis: 
+- string, listas, tuplas, dicionários, conjuntos, etc
+
+'''
+## Exemplos:
+
+# Declaração de string, lista e range
 nome = 'Estados Unidos da América'
 lista = [1, 2, 3, 4, 5]
-numeros = range(1,10)   # necessário transformar em lista
+numeros = range(1,10)        # necessário transformar em lista
 
-# Exemplo de for 1 (string)
+# Exemplo de for com String
 for letra in nome:
     print(letra)
 
-# Exemplo de for 2 (lista)
+# Exemplo de for com Lista
 for numero in lista:
     print(numero)
 
-# Exemplo de for 3 (range)
+# Exemplo de for Range
 for numero in range(1, 10):
-    print(numero)
+    print(numero)           # o valor 10 não está incluso, será lido de 1 a 9
 
+# Função Enumerate - enumeração dos índices de cada valor de uma lista.
+
+for indice in enumerate(nome)
+    print(indice)               # imprime o índice e seu valor correspondente
 '''
-O valor final não é incluso (10 está fora)
+Resultado:
+(0, 'E')
+(1, 's')
+(2, 't')
+(3, 'a')
+...
+...
+...
+- informação dos índices para cada iteração
 '''
 
-# função enumerate
-# [(0, 'E'), (1, 's'), (2, 't'), (3, 'a'), (4, 'd'),... ]
-for indice, valor in enumerate(nome):
-    print(nome[indice])
+# ou (declarando dois parâmetros, imprime-se apenas o que for solicitado na função print() )
+for indice, letra in enumerate(nome):   # i: índice ; letra: valor correspondente a cada índice
+    print(letra)                        # imprime apenas o valor de cada índice
 
-# ou 
-for indice, letra in enumerate(nome):
-    print(letra)
+''' 
+Resultado:
+E
+s
+t
+a
+...
+...
+...
+- informação apenas dos valores de cada iteração
+'''
 
 # ou
 for _, letra in enumerate(nome): # usa-se o underline para descartar o índice
@@ -56,22 +74,22 @@ for valor in enumerate(nome):
 
 # Exemplos de for
 
-# 1
-qtde = int(input('Quantas vezes esse loop deve rodar?'))
+# 1 -> Soma uma determinada quantidade (qtde) de números (num) digitados de um range
+qtde = int(input('Quantas vezes esse loop deve rodar? '))
 soma = 0
 
 for n in range(1, qtde+1):
-    num = int(input(f'Informe o {n}'/{qtde} valor: ))
+    num = int(input(f'Informe o {n}/{qtde} valor: '))
     soma = soma + num
 print(f'A soma é {soma}')
 
-# 2
+# 2 -> imprime na tela sem pular linha (end='')
 for letra in nome:
-    print(letra, end='')      # Forma de obter saída sem pular linha
+    print(letra, end='')
 '''
 Para descobrir outras informações com o esta acima, use dir(help)
 
-CTRL + PRINT com o cursor em cima da função: virá o menu
+CTRL + PRINT com o cursor em cima da função: virá o menu (dica para o Pycharm)
 '''
 
 # Tabela de Emojis Unicode
@@ -115,9 +133,10 @@ for num in range(1, 10, 2):
 for num in range(10, 0, -1):
     print(num)
 
-# Convertendo um range para uma lista
+# Cria uma lista de 10 elementos (0, 1, 2,...,9). Joga o tamanho de um range em lista
 lista = list(range(10))
 print(lista)
+
 '''
 lista = range(10) é um formato ERRADO!
 '''
