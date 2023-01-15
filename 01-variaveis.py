@@ -112,6 +112,15 @@ print(type(valor1))
 print(valor2)
 print(type(valor2))
 
+# Gerando variáveis de tipos diferentes
+num1, *lista = 1,1,2,3    # Atenção: o regexp '*' gera uma lista com os elementos 1,2,3 -> [1,2,3]
+print(num1)               # tipo integer
+print(lista)              # tipo list
+
+# Gerando inteiro e lista vazia (em uma linha)
+numero, *lista = 1,     # numero = inteiro ; lista = lista vazia (vírgula é importante)
+print(numero)           # tipo integer
+print(lista)            # tipo list
 
 ## Tipo Booleano
 
