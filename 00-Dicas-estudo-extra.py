@@ -37,3 +37,12 @@ str() converte para string
 print(str(nome_variável)[::-1]) -> convervte inteiro para string e inverte ordem dos elementos
 
 '''
+
+### TERMINAL
+help(nome_funcao) # abre o help da função (não colocar o parêntese)
+
+
+### IDE PYCHARMI
+# Utilização do help na IDE Pycharm
+pycharm -> ctrl + mouse em cima da função -> mostra o help na IDE
+
