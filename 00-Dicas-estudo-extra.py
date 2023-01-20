@@ -26,9 +26,13 @@ print(' Eu gosto '.join(my_list))    # neste caso, uma string de saída para cad
 
 ## ATENÇÃO!!! Testar os pedaços de códigos em terminal. Boa forma de debug
 
-### 1. Lista de funções built-in
+### 1. Funções diversas
 '''
+ - Built-in
 str() converte para string
+
+- import
+math()
 
 '''
 
