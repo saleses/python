@@ -179,4 +179,160 @@ print(pega_valor(dic, "sobrenome")) # Repare, não existe a chave sobrenome. Ger
 
 ## 4) Bloco Try, Except, Else e Finally
 
+'''
+Try / Except / Else / Finally
+
+- Quando devo tratar um erro? 
+
+1) Toda entrada de dado deve ser tratada (SEMPRE)
+
+Obs.: a função do usuário é distruir seu sistema
+
+'''
+# Exemplo 1 - else: para cada except, pode ser usado o else
+
+try:
+    num = int(input('Informe um número: '))   # Variável local
+except ValueError:
+    print(f'Valor incorreto')
+else:                                 # Caso não ocorra o erro ValueError (imprime a msg abaixo)
+    print(f'Você digitou {num}')
+
+# Exemplo 2 - Finally: o bloco finally é sempre executado. Independente de ocorrer a exceção
+# O finally, geralmente, é utilizado para fechar ou desalocar recursos.
+try:
+    num = int(input('Informe um número: '))
+except ValueError:
+    print('Você não digitou um valor válido.')
+else:
+    print('Você digitou o número {num}')
+finally:
+    print('Executando o finally')
+
+# Exemplo 3 - Função recebe dois valores e efetua a divisão
+# Dica: para pegar o erro correto, para tratar é importante ler a saída (tipo de erro, linha, ...)
+def dividir(a, b):
+    try:
+        return int(a) / int(b)
+    except ValueError:
+        print('Valor incorreto')
+    except ZeroDivisionError:
+        return 'Não é possível realizar uma divisão por zero'
+
+num1 = input('Informe o primeiro número: ')
+num2 = input('Informe o segundo número: ')
+
+print(dividir(num1, num2))
+
+# Exemplo 4 - Forma mais simples que o anterior
+def dividir(a, b):
+    try:
+        return int(a) / int(b)
+    except (ValueError,ZeroDivisionError) as err:   # Criação de exceções em uma linha
+        return f'Ocorreu um problema: {err}'
+
+num1 = input('Informe o primeiro número: ')
+num2 = input('Informe o segundo número: ')
+
+print(dividir(num1, num2))
+
+
+## 4) Debugando código com PDB (PDB: Python Debugger)
+
+'''
+Debugando com PDB
+- Bug: inseto
+
+'''
+
+# Exemplo 1: utilizando o 'print'. Não é legal
+def dividir(a, b):
+    print(f'a={a}, b={b}')     # não usual
+    try:
+        return int(a) / int(b)
+    except (ValueError,ZeroDivisionError) as err: 
+        return f'Ocorreu um problema: {err}'
+
+print(dividir(4, 7))
+
+'''
+Existem formas mais profissionais de se fazer um debug do que no exemplo acima. Utilizando o 'print'
+Em python, pode-se fazer isso em diferentes IDEs, como o PyCharm ou o PDB: Python Debugger
+'''
+
+# Exemplo 2: com o Pycharm -> como estudei com o terminal, pesquisar a opção de debugger do pycharm ou rever aula
+def dividir(a, b):
+    try:
+        return int(a) / int(b)
+    except (ValueError,ZeroDivisionError) as err:
+        return f'Ocorreu um problema: {err}'
+
+print(dividir(4, 7))
+'''
+usa-se o break point, botão debug ao lado do play (canto superior direita)
+'''
+
+# Exemplo 3: com PDB - Python Debugger
+# necessário importar a biblioteca pdb e utilizar a função set_trace()
+'''
+Comandos básicos do PDB
+l (lista onde estamos no código
+n (próxima linha))
+p (imprime variável)
+c (continua a execução - finaliza o debugging)
+
+'''
+import pdb
+
+nome = 'Larissa'
+sobrenome = 'não sei'
+pdb.set_trace()               # uso do PDB
+nome_completo = nome + ' ' + sobrenome
+curso = 'Programação Python'
+final = nome_completo + ' faz o curso ' + curso
+print(final)
+
+# Exemplo 4: com PDB, outra forma
+
+i# import pdb   -> já importado acima
+
+nome = 'Larissa'
+sobrenome = 'não sei'
+#import pdb; pdb.set_trace()     # ver comentário abaixo
+nome_completo = nome + ' ' + sobrenome
+curso = 'Programação Python'
+final = nome_completo + ' faz o curso ' + curso
+print(final)
+
+'''
+Porque utilizar este formato? 
+O debug é utilizado durante o desenvolvimento. Normalmente os 'imports' de bibliotecas são iniciados no início 
+do código. Por isso, ao invés de colocarmos o import do pdb no início do arquivo, nós colocamos somente onde 
+vamos debugar, e ao finalizar já fazemos a remoção.
+'''
+
+# Exemplo 3
+# A partir do python3.7 não é mais necessário importar o PDB. É uma função built-in (integrada) chamada breakpoint()
+nome = 'Larissa'
+sobrenome = 'não sei'
+breakpoint()         # PDB built-in
+nome_completo = nome + ' ' + sobrenome
+curso = 'Programação Python'
+final = nome_completo + ' faz o curso ' + curso
+print(final)
+
+'''
+Obs.: cuidado com conflitos entre nomes de variáveis e os comandos do pdb; veja abaixo
+'''
+
+# Exemplo 4
+def soma(l, n, p, c):
+    breakpoint()
+    return l + n + p + c   # nomes não representativos, ruins. Opte por nomes significativos
+
+print(soma(1, 3, 5, 7))
+'''
+Como os nomes das variáveis são os mesmos dos comandos dos pdb, devemos utilizar o comando p para imprimir
+as variáveis. Ou seja, p nome_da_variavel
+'''
 
