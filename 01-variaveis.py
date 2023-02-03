@@ -41,6 +41,7 @@ Operadores lógicos:
 // divisao com retorno de inteiros
 %  operação de módulo: resto de uma operação
 ** potência
+num ** 0.5 raiz quadrada
 '''
 
 ## Tipo String
