@@ -226,4 +226,133 @@ with open('outro.txt', 'r+') as arquivo:
     arquivo.write('Nova linha \n')
     arquivo.write('Mais uma linha \n')
 
+# 6. StringIO
 
+'''
+StringIO
+
+Atenção: para ler ou escrever dados em arquivos do sistema operacional, o software precisa ter permissão. 
+ - permissão de leitura -> para ler arquivo
+ - permissão de escrita -> para escrever no arquivo
+
+StringIO - Utilizado para ler e criar arquivos em memória
+'''
+# importação do StringIO
+from io import StrinIO
+
+mensagem = 'Este é apenas uma string normal'
+
+# Pode-se criar um arquivo em memória já com uma string inserida ou mesmo vazio para inserirmos texto depois
+arquivo = StringIO(mensagem)
+# arquivo = open('arquivo.txt', 'w')  -> essa linha e a de cima são equivalentes
+
+# Criado o arquivo, pode-se utilizar o conhecimento estudado
+print(arquivo.read())
+
+# Escrevendo outros textos
+arquivo.write(' Outro texto')
+
+# Pode-se inclusive movimentar o cursor
+arquivo.seek(0)
+
+print(arquivo.read())
+
+
+# 7. Sistema de arquivos - Navegação
+
+'''
+Sistema de arquivos - navegação
+
+- para fazer uso de manipulação de arquivos do sistema operacional, precisamos importar e fazer o uso do módulo os 
+os -> Operation System
+
+Dica: 
+1. pode-se abrir arquivo com programação python direto no console shell
+
+'''
+# Importando módulo os
+import os
+
+# getcwd() -> pega o current work diretctory - diretório de trabalho corrente
+# Retorna o path absoluto
+# Simular ao comando pwd
+print(os.getcwd())
+
+# para mudar o diretório, pode-se utilizar o chdir()
+os.chdir('..')
+
+# Exemplo de navegação com python
+print(os.getcwd())   # path absoluto atual (exemplo: /home/antonio/curso/python)
+
+os.chdir('..')
+print(os.getcwd())   # path absoluto atual (exemplo: /home/antonio/curso)
+
+os.chdir('..')
+print(os.getcwd())   # path absoluto atual (exemplo: /home/antonio/)
+
+os.chdir('..')
+print(os.getcwd())   # path absoluto atual (exemplo: /home/)
+
+os.chdir('..')
+print(os.getcwd())   # path absoluto atual (exemplo: /)
+
+# Pode-se checar se um diretório é absoluto ou relativo
+print(os.path.isabs('/home/antonio'))  # True
+
+## Obs.: para usuários Windows
+## Se você, infelizmente, estiver utilizando um computador com Windows, 
+## terá que ter cuidado ao verificar diretórios
+## Exemplo abaixo (repare as barras com escapes)
+
+print(os.path.isabs('C:\\Users\\geek'))  # Lord Sith
+
+# Identificação do S.O
+print(os.name)     # posix (Linux e Mac), nt (Windows)
+print(os.uname())  # resposta com mais detalhes da informação da máquina
+
+# importação do módulo sys
+# import sys
+print(sys.platform)  # mesmo resultado da importação do módulo os acima
+
+# import os (já carregado acima)
+
+# '/home/antonio/workspace/sistema'
+print(os.getcwd())  # mostra o path absoluto
+
+res = os.path.join(os.getcwd(), 'dir1', 'dir2')  # junta o dir1 e dir2 -> dir1/dir2
+
+os.chdir(res)   # altera o diretório
+
+print(os.getcwd())  # /home/antonio/workspace/sistema/dir1/dir2
+
+# Veja que o os.path.join() recebe dois parâmetros, sendo o primeiro o diretório atual e o segundo o 
+# diretório que será juntado ao atual
+
+# import os (importado acima)
+# listdir() -> lista os arquivos e diretórios
+print(os.listdir())
+print(len(os.listdir()))  # qtde de diretórios e arquivos do diretório atual
+
+# Pode-se listar arquivos e diretórios com mais detalhes com scandir()
+print(list(os.scandir())
+arquivos = list(os.scandir())
+
+print(arquivos)
+print(dir(arquivos[0]))
+
+print(arquivos[0].inode())    # numeração deste elemento
+print(arquivos[0].is_dir)     # é um diretório? False
+print(arquivos[0].is_file)    # É um arquivo? True
+print(arquivos[0].is_symlink) # É um link  simbólico? False
+print(arquivos[0].is_name)    # NOme do arquivo
+print(arquivos[0].is_path)    # Caminho até o arquivo
+print(arquivos[0].is_stat)    # Estatísticas...
+
+# obs.: ao utilizar a função scandir(), é importante fechá-la, assim que aberto o arquivo. 
+scanner.close()   # fechando arquivo
+
+# 8. Sistema de arquivos - manipulação
+
+'''
+
+'''
