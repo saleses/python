@@ -354,5 +354,120 @@ scanner.close()   # fechando arquivo
 # 8. Sistema de arquivos - manipulação
 
 '''
+ Manipulação de arquivos
+
 
 '''
+# importação de módulo os
+import os
+
+# Verificação da existência de arquivo ou diretório existe
+# Funciona com path absoluto ou relativo
+
+# Arquivo
+print(os.path.exists('/home/user/arquivo.txt'))  # Retorna True or False
+
+# Diretório
+print(os.path.exists('/home/userdiretorio'))  # Retorna True or False
+
+
+# Criação de arquvos
+
+# Forma 1
+open('arquivo.txt', 'w').close()
+
+# Forma 2
+open('arquivo.txt', 'a').close() 
+
+# Forma 3
+with open('arquivo.txt', 'a') as arquivo: 
+    pass     # comando para não executar nada, passe
+
+
+# Forma 4 - melhor prática?
+# Obs.: retornará erro se o arquivo exista
+os.mknod('arquivo1.txt')
+os.mknod('/home/user/arquivo2.txt')
+
+
+# Criação de um diretório
+# Obs.: retornará erro caso o diretório exista ou por falta de permissão
+os.mkdir('/home/user/diretorio1')   # criação de diretório1, path existe
+os.mkdirs('/home/user/novo-dir/diretorio2')  # criação path completo
+os.mkdirs('dir1/dir2/dir3'), exist_ok=True   # Evita o erro caso exista o diretório. Ignora o já existente
+
+# Renomeando arquivos e diretórios
+os.rename('/home/user/file1', '/home/user/novo-file1')
+os.rename('/home/user/dir1', '/home/user/novo-dir1')
+'''
+Se o diretório existir ou não estiver vazio, ocorrerá  mensagem de erro
+'''
+
+# Deleção de arquivos
+'''
+Cuidado com os comandos de deleção
+- se o arquivo estiver aberto, ocorrerá erro. Testar!!!
+- caso não exista o arquivo, ocorrerá mensagem de erro
+'''
+os.remove('/home/user/arquivo.txt')   # remove apenas arquivos
+
+# Deleção de diretórios
+os.rmdir('/home/user/diretorio')
+'''
+- remove diretórios vazios
+'''
+# Deleção de árvore de diretórios (o exemplo na aula não foi legal)
+for arquivo in os.scandir('/home/user/dir1/dir2'):
+    if arquivo.is_file():
+        os.remove(arquivo.path)
+
+# Deleção de árvore de diretórios vazios e contendo apenas os diretórios ou arquivos desejados para deleção
+os.removedirs('/dir1/dir2')
+
+'''
+instalação de pacote de terceiros pelo python
+pip install lsb-core send2trash  -> ver os pacotes 
+'''
+
+# importação de lib send2trash - envia arquivos e diretórios para a lixeira
+from send2trash import send2trash
+
+os.remove('arquivo1.txt')   # não vai para a lixeira
+send2trash('arquivo2.txt')  # vai para a lixeira
+'''
+se o arquivo ou diretório não existir, ocorrerá erro
+'''
+
+# Trabalhando com arquivos e diretórios temporários
+import tempfile
+
+with tempfile.TemporaryDirectory() as tmp:
+    print(f'Criei o diretório temporário em {tmp}')
+    with open(os.path.join(tmp, 'arquivo_temporário.txt'), 'w') as arquivo:
+        arquivo.write('Estou cansado\n')
+    input()
+'''
+Estamos criando um diretório temporário, abrindo o mesmo e dentro dele criando
+um arquivo para escrevermos um texto. No final, usamos um input() só para mantermos os arquivos
+temporários 'vivos' dentro de blocos with.
+
+Obs.: possivelmente, o código acima não irá funcionar se você estiver utilizando o Windows. Por conta desse
+sistema trabalhar de forma diferente com arquivos temporários. 
+'''
+
+# Criando um arquivo temporário
+with tempfile.TemporaryFile() as tmp:
+    tmp.write(b'Teste de escrita\n')   # b -> convertendo para binários (bits)
+    tmp.seek(0)
+    print(tmp.read())
+'''
+Em arquivos temporários só é possível escrever bits. Por isso, utilizamos 'b' e não string
+'''
+# Outra forma
+arquivo = temporaryFile()
+arquivo.write(b'Teste de escrita\n')   # b -> convertendo para binários (bits)
+arquivo.seek(0)
+print(tmp.read())
+arquivo.close()   # Fecha o arquivo e ele some do temporários
+
+
