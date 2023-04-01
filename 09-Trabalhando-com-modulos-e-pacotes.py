@@ -21,7 +21,7 @@ Pacotes (bibliotecas)
 import random   # importação de todo módulo random (não recomendado)
 
 '''
-random() -> gera um vaçpr real pseudo-aleatório entre 0 e 1
+random() -> gera um valor real pseudo-aleatório entre 0 e 1
 
 Observação: 
 ao realizar o import de todo o módulo, todas as funções, atributos, classes e propriedades

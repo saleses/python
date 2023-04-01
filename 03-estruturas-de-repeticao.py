@@ -187,3 +187,17 @@ while True:
     if comando == 'sair':
         break
 
+# DO...WHILE
+# Forma de simular o laço do...while 
+# Simulação do loop - do..while
+
+num_escolhido = 101   # Ponto de parada
+contador = 1            # Início do contador
+
+while True:
+    if contador != num_escolhido:    # Diferentes: True
+        print(numero, end=" ")
+        contador = contador + 1      # incrementador
+    if numero == num_escolhido:      # Iguais: True, para a repetição
+        break
+
