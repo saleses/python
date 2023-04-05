@@ -74,3 +74,171 @@ lamp = Lampada()
 print(type(lamp))
 # Fim do bloco da classe 
 
+## 2. Atributos
+'''
+Atributos
+- representam as caracteríesticas do objeto. 
+- representação computacional dos estados de um objeto
+
+Em python, os atributos são divididos em 3 grupos: 
+   1. atributos de Instância
+   2. atributos de Classes
+   3. atributos Dinâmicos
+
+'''
+# Atributos de Instâncias
+# são atributos declarados dentro do método construtor que é um método especial utilizado para a construção do objeto
+# self -> objeto que executa um método (veja-os abaixo). Usualmente, é o primeiro parâmetro
+
+class Lampada:
+
+    def __init__(self, voltagem, cor): # o método __init__ é o construtor da classe
+        self.voltagem = voltagem     # declaração de atributos de instância ( __voltagem )
+        self.cor = cor               # declaração de atributos da instância ( __cor )
+        self.ligada = False          # declaração de atributos da instância ( __ligada )
+
+
+class ContaCorrente:
+
+    def __init__(self, numero, limite, saldo):
+        self.numero = numero
+        self.limite = limite
+        self.saldo = saldo
+
+
+class Produto:
+
+    def __init__(self, nome, descricao, valor):
+        self.nome = nome
+        self.descricao = descricao
+        self.valor = valor
+
+
+class Usuario:
+
+    def __init__(self, nome, email, senha):
+        self.nome = nome
+        self.email = email
+        self.senha = senha
+
+'''
+Atributos públicos e atributos privados
+
+Por convenção, todo o atributo de uma classe é público. Ou seja, pode ser acessado em todo o projeto
+Caso deseja-se demonstrar que determinado atributo deve ser tratado como privado, ou seja, acessado/utilizado somente dentro da própria classe, utiliza-se duplo underscore " __ " no início do nome. 
+
+Este formato, duplo underscore, é conhecido como Name Mangling. 
+'''
+class Acesso:
+
+    def __init__(self, email, senha):
+        self.email = email           # atributo público
+        self.__senha = senha         # atributo privado
+
+    def mostra_senha(self):
+        print(self.__senha)           # atributo privado
+
+    def mostra_email(self):
+        print(self.email)
+
+'''
+Obs.: Lembre-se que a declaração de atributo como público ou privado em Python é apenas uma convenção. Não impede o acesso de atributos
+sinalizados como privados fora da classe.
+'''
+# Exemplo
+user = Acesso('user@gmail.com', '123456')
+
+print(user.email)
+# print(user.__senha)
+
+print(user._Acesso__senha)    # Temos acesso, ma não deveria fazer este acesso
+
+user.mostra_senha()    # não tem print porque a função, que já está na classe, pede a impressão
+user.mostra_email()
+
+'''
+Para finalizar, o que significa atributo de instância? 
+- significa que para criar instâncias/objetos de uma classe, todas elas terão atributos
+
+'''
+
+user1 = Acesso('user1@gmail.com', '123456')
+user2 = Acesso('user2@gmail.com', '654321') 
+
+user1.mostra_email()
+user2.mostra_email()
+
+
+# Atributos de Classes
+
+'''
+Cada instãncia com seus valores
+
+Os atributos de classe, são atributos, claro, que são declarados diretamente na classe, ou seja, fora do construtor. Geralmente já 
+inicializamos um valor, e este valor é compartilhado entre todas as instâncias da classe. Ou seja, ao invés de cada instância da classe
+ter seus próprios valores como é o caso dos atributos de instância, com os atributos de classe todas as instâncias terão o mesmo valor
+para este atributo.
+
+'''
+
+# Refatorar a classe Produto
+class Produto:
+    
+    # Atributo de classe
+    imposto = 1.05    # 0.05% de imposto
+    contador = 0
+
+    def __init__(self, nome, descricao, valor):
+        self.id = Produto.contador + 1              # Atributos de instâncias
+        self.nome = nome                            # Atributos de instâncias
+        self.descricao = descricao                  # Atributos de instâncias
+        self.valor = (valor * Produto.imposto)      # Atributo de classe
+        Produto.contador = self.id                  # atributo de classe
+
+p1 = Produto('PlayStation 4', 'Vídeo game', 2300)
+p2 = Produto('Xbox S', 'Vídeo game', 4500)
+
+print(p1.valor)    # Acesso possível, mas incorreto de um atributo de classe (pela instância)
+print(p2.valor)
+
+# Obs.: Não precisamos criar uma instância de uma classe para fazer acesso a um atributo de classe
+
+print(Produto.imposto)   # Acesso correto de um atributo de classe
+
+print(p1.id)
+print(p2.id)
+
+# Atenção.: Em Java, os atributos de classe são chamados no Python de atributos estáticos. 
+
+
+# Atributos dinâmicos
+'''
+Atributo de instãncia que pode ser criado em tempo de execução
+Obs.: o atributo dinâmico será exclusivo da instância que o criou
+
+'''
+
+p1 = Produto('PlayStation 4', 'Video Game', 2300 )
+p2 = Produto('Arroz', 'Mercearia', 5.99 )
+
+
+# Criando um atributo dinâmico em tempo de execução
+p2.peso = '5kg'    # Note que na classe Produto não existe o atributo peso
+
+print(f'Produto: {p2.nome}, Descrição: {p2.descricao}, Valor: {p2.valor}, Peso: {p2.peso} ')
+# print(f'Produto: {p1.nome}, Descrição: {p1.descricao}, Valor: {p1.valor}, Peso: {p1.peso} ')
+
+# Deletando atributos
+print(p1.__dict__)
+print(p2.__dict__)
+
+print(Produto.__dict__)
+
+del p2.peso
+del p2.valor
+del p2.descricao
+
+print(p1.__dict__)
+print(p2.__dict__)
+
+
