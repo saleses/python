@@ -299,6 +299,12 @@ print(max(lista)) # máximo valor
 print(min(lista)) # mínimo valor
 print(len(lista)) # tamanho da lista
 
+
+# Unir e ordenar elementos de lista 
+listaX = [3, 5, 2, 1, 3, 6, 5, 2, 1, 4]
+ordenacao = list(set(multiplos))         # utilização de dois métodos: set e list
+print(ordenacao)
+
 # transformação de uma lista em tupla
 # atenção: a representação de tuplas é diferente de listas
 # [] listas

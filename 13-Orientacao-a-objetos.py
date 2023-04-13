@@ -241,4 +241,177 @@ del p2.descricao
 print(p1.__dict__)
 print(p2.__dict__)
 
+## 3. Métodos
+'''
+Atenção: entender função para estudar métodos
+
+Métodos
+- comparando com o paradigma estrutural, seriam as funçóes
+- representa os comportamentos do objeto. Ou seja, ações que este objeto pode realizar
+- Em python, dividimos os métodos em 2 grupos: 
+    - métodos de instância
+    - métodos de classe
+
+- O método dunder init, __init__, é um método especial chamado de construtor. Sua função é construir o objeto a partir da classe. 
+- todo elemento em python que inicia e finaliza com duplo underline, __nome__, é chamado de dunder (Double Underline)
+
+- os métodos (funções) dunder em python são chamados de métodos mágicos
+Obs.1: se aparecer underline apenas no início, não é dunder
+Obs.2: por mais que pssamos criar nossas próprias funções utilizando dunder, não é recomendado. Python possuem vários métodos com essa forma de nomenclatura e pode ser que mudemos o comportamento dessas funções mágicas internas da linguagem. Evite ao máximo. 
+- métodos são escritos em letras minúsculas. Se for composto, separar com underline
+- métodos de classe em python, é conhecido como métodos estáticos em outras linguagem
+
+'''
+
+# 3.1. Métodos de instâncias
+'''
+obs.: os atributos devem ser criados dentro da classe (self.__cor = cor, por exemplo)
+'''
+
+class Lampada:
+
+    def __init__(self, cor, voltagem, luminosidade):  # método __init__ construtor da classe
+        self.__cor = cor
+        self.__voltagem = voltagem
+        self.__luminosidade = luminosidade
+        self.__ligada = False
+
+class ContaCorrente:
+
+    contador = 4999
+
+    def __init__(self, limite, saldo):
+        self.__numero = ContaCorrente.contador + 1
+        self.__limite = limite
+        self.__saldo = saldo
+        ContaCorrente.contador = self.__numero
+
+class Produto:
+
+    contador = 0
+
+    def__init__(self, nome, descricao, valor):
+        self.__id = Produto.contador + 1
+        self.__nome = nome
+        self.__descricao = descricao
+        self.__valor = valor
+        Produto.contador = self.__numero
+
+    def desconto(self, porcentagem):
+        """ Retorna o valor do produto com o desconto """
+        return (self.__valor * (100 - porcentagem)) / 100
+
+# importação da lib passlib
+# pip install passlib
+from passlib.hash import pbkdf2_sha256 as cryp
+
+class Usuario:
+
+    contador = 0
+
+    @classmethod                   # Decorador: visto anteriormente
+    def conta_usuarios(cls):       # cls: é o parâmetro da classe. A própria classe
+        print(f'Classe: {cls}')    # Teste
+        print(f'TEmos {cls.contador} usuários no sistema')
+
+    @classmethod
+    def ver(cls):
+        print('Teste')
+
+    @staticmethod
+    def definicao():
+        return 'UXR344'
+
+    def__init__(self, nome, sobrenome, email, senha):
+        self.__nome = nome
+        self.__sobrenome = sobrenome
+        self.__email = email
+        self.__senha = cryp.hash(senha rounds=200000, salt_size=16) 
+        Usuario.contador = self.__id
+        print(f'Usuário criado: {self.__gera_usuario()}')
+
+    def nome_completo(self):
+        return f'{self.__nome} {self.__sobrenome}'
+
+    # Criada apenas para exemplo. Além do curso
+    def checa_senha(self, senha):
+        if cryp.verify(senha, self.__senha):     # Verifica se a senha digitada é igual a do banco de dados
+            return True
+        return False
+
+# má prática
+#    def __correr__(self, metros):    # não é recomendado o desenvolvedor criar métodos dunder
+#        print(f'{self.__nome}Estou correndo {metros} metros')
+
+
+# O produto
+p1 = Produto('Playstation 4', 'Video Game', 2300)
+
+# Instânca do método (desconto, acima)
+print(p1.desconto(50))    # desconto de 50% de 2300 calculado no método desconto da classe Produto
+
+
+# Forma errada
+print(Produto.desconto(40)) 
+
+# Teste para classe Usuário (senha criptografada)
+user1 = Usuario('Antonio', 'Sales', 'ases@hotmail.com', '123456')
+user2 = Usuario('Daniel', 'Sales', 'dses@hotmail.com', '654321')
+
+print(user1.nome_completo())
+print(user2.nome_completo())
+
+
+nome = input('Informe o nome: ')
+sobrenome = input('Informe o sobrenome: ')
+email = input('Informe o e-mail: ')
+senha = input('Informe o senha: ')
+confirma_senha = input('Informe o senha: ')
+
+if senha == confirma_senha:
+    user = Usuario(nome, sobrenome, email, senha)
+else:
+    print('Senha não confere...')
+    exit(1)
+
+print('Usuário criado com sucesso!')
+
+senha = input('Informe a senha para acesso: ')
+
+if user.checa_senha(senha):
+    print('Acesso permitido')
+else:
+    print('Acesso negado')
+
+print(f'Senha User Criptografada: {user.__Usuario__senha}')  # Acesso errado
+
+
+
+# 3.2. Métodos de classe
+
+user = Usuario('Carlos', 'Augusto', 'caugusto@gmail.com', '123456')
+
+Usuario.conta_usuarios()  # Forma correta
+user.conta_usuarios()     # Possível, mas incorreta
+
+'''
+métodos acima, são métodos públicos. Abaixo, veremos os privados
+'''
+
+def __gera_usuario(self):
+    return self.__email.split('@')[0]   # retorna o index 0 do email. 
+
+
+# 3.3. Métodos estáticos
+
+print(Usuario.contador)
+
+print(Usuario.definicao())
+
+user = Usuario('Thomas', 'Aquino', 'thomas@outlook.com', '123456')
+
+print(user.contador)
+
+print(user.definicao())
+
 

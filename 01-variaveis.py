@@ -113,6 +113,12 @@ print(type(valor1))
 print(valor2)
 print(type(valor2))
 
+# Mais de uma variável em uma linha com questionamento
+n1,n2 = input('Digite dois números inteiros: ').split()  # separe a entrada de valores com espaço
+'''
+Obs.: não funcionou utilizando o método int()
+'''
+
 # Gerando variáveis de tipos diferentes
 num1, *lista = 1,1,2,3    # Atenção: o regexp '*' gera uma lista com os elementos 1,2,3 -> [1,2,3]
 print(num1)               # tipo integer
