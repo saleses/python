@@ -414,4 +414,175 @@ print(user.contador)
 
 print(user.definicao())
 
+# 4. Objetos
+
+'''
+Objetos são instâncias da classe. Ou seja, após o mapeamento do objeto para o mundo real para sua representação computacional, devemos poder scriar quantos objetos forem necessários. Podemos pensar nos objetos/instãncias de uma classe como variáveis do tipo definido na classe. 
+
+'''
+
+class Lampada:
+
+    def __init__(self, cor, voltagem, luminosidade):
+        self.__cor = cor
+        self.__voltagem = voltagem
+        self.__luminosidade = luminosidade
+        self.__ligada = False
+
+    def checa_lampada(self):
+        return self.__ligada
+
+    def ligar_desligar(self):
+        if self.__ligada:
+            self.__ligada = False
+        else:
+            self.__ligada = True
+
+class Cliente(self, nome, cpf):
+    
+    def __init__(self, nome, cpf):
+        self.__nome = nome
+        self.__cpf = cpf
+
+    def diz(self):
+        print(f'O cliente {self.__nome} diz oi')
+
+
+class ContaCorrente:
+
+    contador = 4999
+
+    def __init__(self, limite, saldo, cliente):
+        self.__numero = ContaCorrente.contador + 1
+        self.__limite = limite
+        self.__saldo = saldo
+        self.__cliente = cliente
+        ContaCorrente.contador = self.__numero
+
+    def mostra_cliente(self):
+        print(f'O cliente é {self.__cliente.__Cliente.__nome}')
+
+
+class Usuario:
+
+    def __init__(self, nome, sobrenome, email, senha):
+        self.__nome = nome
+        self.__sobrenome = sobrenome
+        self.__email = email
+        self.__senha = senha
+
+
+# Objetos / Instâncias de uma classe
+lamp1 = Lampada('branca', 110, 60)
+
+lamp1.ligar_desligar()   # Liga a lâmpada
+
+print(f'A lâmpada está ligada? {lamp1.checa_lampada()}')
+
+cc1 = ContaCorrente(5000, 20000)
+
+user1 = Usuario('Geraldo', 'Antonio', 'dan@gmail.com', '123456')
+
+cli1 = Cliente('Fulano de tal', '123.456.789-99')  # Objeto do tipo Cliente
+
+cc = ContaCorrente(5000, 10000, cli1)
+
+print(cc.mostra_cliente())
+
+cc.__ContaCorrente__cliente.diz()   # Forma errada, mas funcionou. Má prática? 
+
+
+# 5. Abstração e Encapsulamento
+
+'''
+- O grande objetivo da POO é encapsular o código dentro de um grupo lógico e hierárquico utilizando classes. 
+
+Encapsular: cápsula
+
+            classe
+-------------------------------
+/                             /
+/      Atributos e métodos    /
+/                             /
+-------------------------------
+
+# Relembrando Atributos/Métodos privados em Python
+- Pense que temos uma classe chamada Pessoa, contendo um atributo privado chamado __nome e mum método privado chamado __falar()
+- Esses elementos privados só devem/deveriam ser acessados dentro das classes. Mas Python não bloqueia este acesso fora da classe.
+Com Python acontece um fenômeno chamado Name Mangling, que faz uma alteração na forma de se acessar os elementos privados, conforme:
+
+_Classe_elemento
+
+Exemplo: Acessando elementos privados fora da classe:
+    instancia._Pessoa_nome
+    instancia._Pessoa_falar()
+
+Abstração, em POO, é o ato de expor apenas dados relevantes de uma classe, escondendo atributos e métodos privados de usuário. 
+
+'''
+
+class Conta:
+
+    contador = 400
+
+    def __init__(self, titular, saldo, limite):
+        self.numero = Conta.contador    # Atributos, este e os abaixos, são públicos. Para ser privados (__underline). Daí estarão encapsulados 
+        self.titular = titular
+        self.saldo = saldo
+        self.limite = limite
+        Conta.contador + 1
+
+    def extrato(self):
+        print(f'Saldo de {self.saldo} do titular {self.titular} com limite de {self.limite}')
+        
+    def depositar(self, valor):
+        if valor > 0:
+            self.__saldo += valor
+        else:
+            print('O valor precisa ser positivo')
+
+    def sacar(self, valor):
+        if valor > 0:
+            if self.__saldo >= valor:
+                self.__saldo -= valor:
+            else:
+                print('Saldo insuficiente')
+        else:
+            print('O valor deve er positivo')
+
+    def transferir(self, valor, conta_destino):
+        # 1 - remover o valor da conta de origem
+        self.__saldo -= valor
+        self.__saldo -= 10    # Taxa de transferência paga por quem realizou a transferência
+
+        # 2 - adicionar o valor na conta de destino
+        conta_destino.__saldo += valor
+
+# Testando
+conta1 = Conta('Tony', 150.00, 1500)
+print(conta1.numero)
+print(conta1.titular)
+print(conta1.saldo)
+print(conta1.limite)
+
+# Objetos que alteram os valores dos atributos (sem segurança). Por quê? Porque a declaração dos atributos são públicos
+# Os dados não estão encapsulados. 
+conta1.numero = 42
+conta1.titular = 'Titio'
+conta1.saldo = 99999999999
+conta1.limite = 99999999999999999999
+
+# Atenção: em python, não há bloqueio para acesso aos dados
+
+conta1.depositar(150)
+print(conta1.__dict__)
+
+conta1.sacar(200)
+print(conta1.__dict__)
+
+
+conta2.transferir(100, conta1)
+conta1.extrato()
+conta2.extrato()
+
 
