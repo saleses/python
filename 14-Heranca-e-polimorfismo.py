@@ -86,6 +86,7 @@ print(Funcionario1.__dict__)
 
 
 ## 2. PROPRIEDADES
+
 '''
 Propriedades (Properties)
 
@@ -242,5 +243,156 @@ print(conta1.limite)
 # Saída da propriedade que contêm uma função. Não é uma função. É uma propriedade (repare: não tem parênteses após valor_total)
 print(conta1.valor_total)
 print(conta2.valor_total)
+
+## 3. Método super()
+
+'''
+Método super()
+- refere-se a super classe
+
+'''
+class Animal:
+
+    def __init__(self, nome, especie):
+        self,__nome = nome
+        self,__especie = especie
+
+    def faz_som(self, som):
+        print(f'O {self.__nome} fala {som}')
+
+
+class Gato(Animal):    # subclasse ou classe filha da super classe Animal
+
+    def __init__(self, nome, especie, raca):
+        # Animal.__init__(self, nome, especie)  # funciona, mas não é recomendado
+        super().__init__(nome, especie)         # boa prática
+        super().faz_som('auauauauauaua')        # boa prática
+        self.__raca = raca
+
+felix = Gato('Felix', 'Felino', 'Angorá')    # Instância do objeto felix
+felix.faz_som('miau')
+
+
+## 4. Herança múltipla
+'''
+Herança múltipla nada mais é do que a possibilidade de uma classe herdar de múltiplas classes,
+fazendo com que a classe filha herde todos os atributos e métodos de todas as classes herdadas.
+
+A herança múltipla pode ser feita de duas formas:
+    - Por Multiderivação Direta;
+    - Por Multiderivação Indireta;
+'''
+
+# Exemplo 1 - Multiderivação Direta
+
+class Base1:
+    pass
+
+
+class Base2:
+    pass
+
+
+class Base3:
+    pass
+
+
+class MultiDerivada(Base1, Base2, Base3):    # herda das classes Base1, Base2 e Base3
+    pass
+
+# Exemplo 2 - Multiderivação Indireta
+
+class Base1:
+    pass
+
+
+class Base2(Base1):
+    pass
+
+
+class Base3(Base2):
+    pass
+
+
+class MultiDerivada(Base3)   # herda indiretamente a Base2 e Base1
+    pass
+
+
+'''
+Obs.: não importa se a derivação é direta ou indireta. A classe que realizar a herança herdará todos os atributos
+e métodos da super classe
+'''
+
+# Exemplo 3
+
+class Animal:                     # Classe base
+
+    def __init__(self, nome):     # método construtor
+        self.__nome = nome
+
+    def cumprimentar(self):
+        return f'Eu sou {self.__nome}'
+
+
+class Aquatico(Animal):            # herda da classe Animal
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def nadar(self):
+        return f'{self._Animal__nome} está nadando!'
+    
+    def cumprimentar(self):
+        return f'Eu sou {self._Animal__nome} do mar!'
+
+
+class Terrestre(Animal):            # Herda da classe Animal
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def nadar(self):
+        return f'{self._Animal__nome} está andando'
+
+    def cumprimentar(self):
+        return f'Eu sou {self._Animal__nome} da terra!'
+
+
+class Pinguim(Terrestre, Aquatico):  # Herança Múltipla Indireta: herda de Animal através de Terrestre e Aquatico
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+# Teste
+baleia = Aquatico('Wally')
+print(baleia.nadar())
+print(baleia.cumprimentar())
+
+tatu = Terrestre('Xim')
+print(tatu.andar())
+print(tatu.cumprimentar())
+
+tux = Pinguim('Tux')
+print(tux.andar())
+print(tux.nadar())
+print(tux.cumprimentar())  # Method Resolution Order - MRO -> tem relação com a ordem declarada na classe com Herança múltipla
+
+
+# Objeto é instãncia de...
+print(f'Tux é instância de Pinguim? {isinstance(tux, Pinguim)}')       # a função/método isinstance retorna True ou False
+print(f'Tux é instância de Aquático? {isinstance(tux, Aquático)}')
+print(f'Tux é instância de Terrestre? {isinstance(tux, Terrestre)}')
+print(f'Tux é instância de Animal? {isinstance(tux, Animal)}')
+print(f'Tux é instância de object? {isinstance(tux, object)}')i      # por padrão uma classe ao ser criada, herda o tipo object
+
+'''
+Exemplo: 
+class Pessoa(object):   # é a mesma coisa que class Pessoa():
+    pass
+
+Todas saídas serão verdadeiras (True) porque existe heranças
+'''
+
+## 5. MRO - Method Resolution Order
 
 
