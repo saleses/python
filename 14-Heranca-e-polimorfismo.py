@@ -393,6 +393,212 @@ class Pessoa(object):   # é a mesma coisa que class Pessoa():
 Todas saídas serão verdadeiras (True) porque existe heranças
 '''
 
-## 5. MRO - Method Resolution Order
+# 5. MRO - Method Resolution Order
 
+"""
+MRO é a ordem de execução dos métodos. Quem será executado primeiro
+
+Em python, pode-se conferir a ordem de execução de três formas:
+    1) via propriedade da classe __mro__
+    2) via método mro()
+    3) via help
+
+Terminal:
+# >>> from mro import Pinguim  (importar para testar as linhas abaixo)
+# >>> Pinguim.__mro__   (vai mostrar a ordem)
+# >>> Pinguim.mro()     (vai mostrar a ordem)
+# >>> help(Pinguim)
+
+"""
+
+# Comentário abaixo é o exemplo acima modificado para explicação de MRO
+
+"""
+# Exemplo 3
+
+class Animal:                     # Classe base
+
+    def __init__(self, nome):     # método construtor
+        self.__nome = nome
+
+    def cumprimentar(self):
+        return f'Eu sou {self.__nome}'
+
+
+class Aquatico(Animal):            # herda da classe Animal
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def nadar(self):
+        return f'{self._Animal__nome} está nadando!'
+
+    def cumprimentar(self):
+        return f'Eu sou {self._Animal__nome} do mar!'
+
+
+class Terrestre(Animal):            # Herda da classe Animal
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def nadar(self):
+        return f'{self._Animal__nome} está andando'
+
+    def cumprimentar(self):
+        return f'Eu sou {self._Animal__nome} da terra!'
+
+
+class Pinguim(Terrestre, Aquatico):  # Herança Múltipla Indireta: herda de Animal através de Terrestre e Aquatico
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+# Teste
+baleia = Aquatico('Wally')
+print(baleia.nadar())
+print(baleia.cumprimentar())
+
+tatu = Terrestre('Xim')
+print(tatu.andar()
+print(tatu.cumprimentar())
+
+tux = Pinguim('Tux')
+print(tux.cumprimentar())  # Method Resolution Order - MRO -> tem relação com a ordem declarada na classe com Herança múltipla
+
+
+Resultado: altera a ordem
+
+# Pinguim(Aquático, Terrestre)
+Saída: Eu sou Tux da terra
+"""
+
+# 6. POLIMORFISMO
+
+'''
+Poli: Muitas, Mofis: Formas
+- são os objetos com múltiplas formas
+
+Quando se reimplementa um método presente na classe pai em classes filhas estamos realizando uma sobrescrta de método (Overriding)
+- o overriding é a melhor representação do polimorfismo
+
+'''
+
+class Animal(object):
+
+    def __init__(self, nome):
+        self.__nome = nome
+
+    def falar(self):
+        raise NotImplementedError('A classe filha precisa implementar este método')
+
+    def comer(self):
+        print('f{self.__nome} está comendo...')
+
+
+class Cachorro(Animal):
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def falar(self):
+        print(f'{self.__Animal__nome} fala wau wau')     # Cada animal fala de um jeito. Uma característica do polimorfismo
+
+
+class Gato(Animal):
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def falar(self):
+        print(f'{self.__Animal__nome} fala miau!')
+
+
+class Rato(Animal):
+
+    def __init__(self, nome):
+        super().__init__(nome)
+
+    def falar(self):
+        print(f'{self.__Animal__nome}   ')
+
+# Testes
+felix = Gato('Felix')
+felix.comer()
+felix.falar()
+
+pluto = Cachorro('Pluto')
+pluto.comer()
+pluto.falar()
+
+mickey = Cachorro('Pluto')
+mickey.comer()
+mickey.falar()
+
+
+# 7. Métodos mágicos
+
+"""
+Métodos mágicos são todos os métodos que utilizam dunder. (Dunder: Double Underscore)
+
+Dunder init -> __init__
+
+Dunder repre -> Representação de objeto
+
+
+"""
+
+class Livro:
+
+    def __init__(self, titulo, autor, paginas):
+        self.titulo = titulo
+        self.autor = autor
+        self.paginas = paginas
+
+    def __repr__(self):   # método da classe Object. Faz a representação de um objeto -> objeto Livro alocado em um endereço de memória
+        return f'{self.titulo} escrito por {self.autor}'
+
+    def __str__(self):    # Aparentemente igual. Tem preferência entre os métodos. Este será utilizado
+        return self.titulo
+
+    def __len__(self):
+        return self.paginas
+
+    def __del__(self):
+        print('Um objeto do tipo Livro foi deletado da memória')
+
+    def __add__(self, outro):
+        return f'{self} - {outro}'
+
+    def __mul__(self, outro):
+        if isinstance(outro, int):
+            msg = ''
+            for n in range(outro):
+                msg += ' ' + str(self)
+            return msg
+        return 'Não posso multiplicar'
+
+
+livros1 = Livro('Python Rocks!', 'Aula Python', 400)
+livros2 = Livro('AI with Python', 'Aula Python', 350)
+
+print(livro1)
+
+print(livro2)
+
+print(len(livro1))
+print(len(livro2))
+
+print(livro1 + livro2)
+print(livro1 * 3)
+
+
+# Deleção de variáveis da memória
+'''
+No terminal: 
+# >>> nome = Antonio
+# >>> print(nome)
+# >>> del nome
+
+'''
 
