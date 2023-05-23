@@ -1,9 +1,10 @@
-COLEÇÕES PYTHON
+# COLEÇÕES PYTHON
 
-LISTAS
+# LISTAS
 
 """
-Listas em python funcionam como vetores ou matrizes. Ou seja, arrays como em outras linguagens. Com a diferença de serem DINÂMICO e também de podermos colocar QUALQUER tipo de dado. 
+Listas em python funcionam como vetores ou matrizes. Ou seja, arrays como em outras linguagens. i
+Com a diferença de serem DINÂMICAS e também por podermos colocar QUALQUER tipo de dado. 
 
 - Dinâmico: não possui tamanho fixo. Cria-se a lista e adiciona-se elementos. Enquanto houver memória na máquina, a lista pode ser aumentada. 
 - Qualquer tipo de dado
@@ -21,6 +22,15 @@ lista3 = []
 lista4 = list(range[11])
 
 lista5 = list('Geek University')
+
+# Imprimir valores de lista
+'''Em uma linha'''
+print(*lista_num, sep=", ")
+'''Valor por linha '''
+print(*lista_num, sep= "\n"
+'''Impressão de valor com string: ,end'' faz com que a função/método print() não pule a linha'''
+print(f'string: ',end='')
+print(*lista)
 
 # Podemos facilmente checar se determinado valor está contido na lista
 if 8 in lista4:
@@ -55,14 +65,15 @@ if [8, 3, 1] in lista1:
 else:
     print('Não encontrei a lista')
 
-# Para colocar mais de um elemento em uma lista, e não como uma lista dentro de uma lista como um elemente, usa-se a função extend. Esta função, diferente da função append, é usado para mais de um elemento. Não funciona para um único elemento. Ou seja: 
+# Para colocar mais de um elemento em uma lista, e não como uma lista dentro de uma lista como um elemento, usa-se a função extend. Esta função, diferente da função append, é usado para mais de um elemento. Não funciona para um único elemento. Ou seja: 
 # append: um único elemento ou lista como um elemento
 # extend: para mais de um elemento em uma lista
+# obs.: as funções/métodos append() e extend() acrescentam o valor no final da lista
 
 lista1.extend([123, 44, 67])
 print(lista1)
 
-# Pode-se inserir um novo elemento na lista informando a posição do índice, usa-se a função insert. (append e extend inserem no final)
+# Pode-se inserir um novo elemento na lista informando a posição do índice, usa-se a função insert. 
 # Não apaga o valor anterior, joga para o próximo índice
 
 lista1.insert(2, 'Novo valor')

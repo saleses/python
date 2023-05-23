@@ -1,7 +1,7 @@
 # MODULO COLLECTIONS - COUNTER
 
 '''
-Implimentação alternativa
+Implementação alternativa
 Collections -> High-performance Container Datetypes
 
 Counter -> recebe um interável como parâmetro e cria um objeto do tipo Collection Counter que é parecida com um dicionário, contando como chave o elemento da lista passada como parâmetro e como valor a quantidade de ocorrências desse elemento
