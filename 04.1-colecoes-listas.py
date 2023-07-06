@@ -39,10 +39,15 @@ else:
     print(f'Não encontrei o número {num}')
 
 # Podemos facilmente ordenar uma lista
-lista1.sort() # ordena numéricos
+# 1. Ordem direta
+'''Ordenação de números ou strings'''
+lista1.sort() 
 print(lista1)
-lista5.sort() # ordena strings
+lista5.sort() 
 print(lista5)
+
+# 2. Ordem decrescente
+sorted(numeros, key=int, reverse=True)  # o que faz a chave key=int???
 
 # Podemos facilmente contar o número de ocorrências de um valor em uma lista
 print(lista1.count(1))
@@ -141,6 +146,12 @@ print(lista5)
 nova = [1, 2, 3]
 nova = nova * 3
 print(nova)
+
+# Remoção de números repetidos
+repetidos = [2, 4, 5, 2]
+print(repetidos)
+sem_num_repetidos = [*set(repetidos)]
+print(sem_num_repetidos)
 
 # Converter string para uma lista
 # exemplo 1

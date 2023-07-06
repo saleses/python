@@ -235,4 +235,38 @@ print(veja)
 veja = {}.fromkeys(range(1, 11), 'novo')   # cada número do range - 1, 2, 3, ..., 10 - teremos uma chave
 print(veja)
 
+## Geração de listas: de chaves e de valores
+# 1. Geração de listas de chaves e valores
+chaves = list(dic.keys())
+valores = list(dic.values())
+
+# 2. Armazena em variável o índice da lista de valor 20
+indice_lista = valores.index(20)
+
+# 3. Listar chaves e valores
+list(dic.keys())
+list(dic.values())
+
+
+## Percorrendo elementos de um dicionário - dict.keys()
+# 1. Pegar valores
+for v in dic.values():
+    print(f'valor: {v}')
+
+# 2. Verificação da existência de valores em dicionários (retornar 'True')
+print('valor' in dic.values())
+
+# 3. Chave pega valor
+dic = {1:10, 2:20, 3:30}
+for k in dic.keys():
+    print(f'chave: {k} - valor: {dic[k]}')
+
+## Geração de lista com elementos organizados em tuplas (duas formas)
+# Exemplo 1
+frutas = {'pera': 10, 'uva': 2 , 'maça': 55}
+print(frutas.items())
+
+# Exemplo 2
+for k,v in frutas.items():
+    print(f'Chave: {k} - Valor: {v}')
 

@@ -274,6 +274,10 @@ print('Conversão de string em lista\nmeu_nome = "Antonio"\nprint(meu_nome.split
 meu_nome = 'Antonio'
 print(meu_nome.split())
 
+# Dica:
+# separar valores com barra "/" e pegar a posição desejada
+split('/'){2}
+
 # Converte uma string e imprime apenas o índice desejado
 print('Imprime índice 0 e 1 da lista\nprint(meu_nome.split()[0])\nprint(meu_nome.split()[1])')
 print(meu_nome.split()[0])
