@@ -8,7 +8,7 @@
     - pode ou não receber entradas de dados e retornar uma saída de dados
     - muito úteis para executar procedimentos similares por repetidas vezes
 
-Obs.: cuidado para manter a simplicidade do código. Funções devem ser simples, contendo tarefas específicas e não repetitivas 
+Obs.: cuidado para manter a simplicidade do código. Funções devem ser simples, contendo tarefas específicas, finalidade própria, e não repetitivas, chamadas pontuais. 
 
 Exemplo de funções, built-in: 
 - print()
@@ -18,19 +18,16 @@ Exemplo de funções, built-in:
 - count()
 - dentre outras
 
-
 '''
 
-# Exemplo de utilização de funções:
+# Exemplo de utilização de funções integradas. (Built-in são as funções integradas):
 #cores = ['verde', 'amarelo', 'azul', 'branco']
-
-# Utilização de uma função integrada: Built-in (denominação dada as funções integradas)
-#print(cores)    # função integrada print()
+#print(cores)                                         # função integrada print()
 
 #curso = 'Programação em Python'
-#print(curso)    # função recebe um dado, curso, e o imprime
+#print(curso)                                         # função recebe um dado, curso, e o imprime
 
-#cores.append('roxo')   # função append() adiciona elementos na lista. 
+#cores.append('roxo')                                 # função append() adiciona elementos na lista. 
 #print(cores)
 
 # Exemplo de erro
@@ -48,8 +45,8 @@ Exemplo de funções, built-in:
 Ou seja, as funções podem ter diversas finalidades. São tarefas implementadas, chamadas para execução de algo específico
 '''
 
-# Princípio de programação
-# DRY - Don't Repeat Yourself - Não repita você mesmo / Não repita seu código
+# PRINCÍPIO DA PROGRAMAÇÃO
+# DRY: Don't Repeat Yourself -> Não repita você mesmo / Não repita seu código
 
 '''
 Definição de funções
@@ -61,31 +58,30 @@ def nome_da_funcao(parametros_de_entrada):
 Onde: 
 - nome_da_funcao > SEMPRE, com letras minúsculas, e se for nome composto, separado por underline (Snake Case)
 - parametros_de_entrada -> Opcionais, onde tendo mais de um, cada um separado por vírgula, podendo ser opcionais ou não;
-bloco_da_funcao -> Também chamado de corpo da função ou implementação, é onde o processamento da funão acontece. Neste bloco, pode ter ou não retorno da função. 
+bloco_da_funcao -> Também chamado de corpo da função ou implementação, é onde o processamento da função acontece. Neste bloco, pode ter ou não retorno da função. 
 
 Obs.: veja que para definir uma função, utilizamos a palavra 'def' informando ao Python que estamos definindo uma função. Também abrimos o bloco de código com o já conhecido dois pontos ':' que é utilizado em python para definir blocos.
 
 '''
 
-# Definindo a primeira função
+############# ORGANIZAÇÃO DESTE ARQUIVO INICIADO COM OS EXEMPLOS ABAIXO #################################
 
-# Definição
-def diz_oi():                # o parênteses vazio '()' indica que não há entrada na função
-    print('Oi!')
+# Exemplo 1
+print('Funcão: bem_vindo')
+def bem_vindo():                                 # Não há parâmetros de entrada
+    print('Hello World!\n')
 
-# Chamada de execução
-diz_oi()                     # É neste ponto que a função criada é executada no código. Sempre com o parêntese '()'
+'''Chamada da função'''
+bem_vindo()
 
 '''
-Observações: 
-1. veja que, dentro das nossas funções podemos utilizar outras funções. No caso, a função print()
-2. Esta função só executa uma tarefa, ou seja, a única coisa que ela faz é dizer oi;
-3. Essa função não recebe nenhum parâmetro de entrada. 
-4. Essa função não retorna nada. Será estudado o retorno mais a frente
+Observação: 
+Pode existir funções built-in ou outras funções dentro de uma função
 '''
 
-# Segunda função
-# Definição
+
+# Exemplo 2
+print('Função: cantar_parabens')
 def cantar_parabens():
     print('Parabéns pra você')
     print('Nesta data querida')
@@ -96,16 +92,70 @@ def cantar_parabens():
 cantar_parabens()                     # Chama a função cantar_parabens()
 
 
-# chamando uma função 5 vezes, exemplo
+# Exemplo 3 -> chamada de função dentro de um loop for
 for n in range(5):
-    print(n)                          # teste de quantas vezes está sendo repetida a função
-    cantar_parabens()
+    print(n)
+    cantar_parabens()   # Função será executada 5 vezes
 
-# Em python, podemos inclusive criar variáveis do tipo de uma função e executar esta função através da variável
 
-canta = cantar_parabens  # Definição da variável. Atenção: neste caso não se coloca o parêntese. Nâo é boa prática esse caso
 
-canta()
+# Exemplo 4 - Entrada de valor fora da função
+print('Função: dobro')
+def dobro(n):                                    # Argumento de entrada
+    d = n * 2
+    print(f'O dobro de {n} é: {d}\n')
+
+num = int(input("Digite um número: "))
+
+'''Chamada'''
+dobro(num)
+
+
+# Exemplo 4 - Neste exemplo a entrada de valores está na própria função
+print('Função: soma')
+def soma():
+    n1 = int(input("Digite primeiro número: "))
+    n2 = int(input("Digite segundo número: "))
+    s = n1 + n2
+    print(f'{n1} + {n2} = {s}\n')
+
+'''Chamada'''
+soma()
+
+
+# Exemplo 4 - Retorna, envia algo para fora da função
+print('Função: subtrair_dez')
+def subtrair_dez(n):
+    return n - 10    # Envia para a chamada da função a expressão "n - 10" para armazenar em variáveis
+
+
+num = float(input('Digite um número: '))
+
+'''Chamada: guarda valore retornado em variável'''
+subtracao = subtrair_dez(num)
+
+print(f'Valor da subtração: {subtracao}\n')
+
+'''PRÁTICA RUIM DO EXEMPLO ACIMA'''
+# Uma forma de enviar uma chamada para a variável é declará-la sem os parêntes
+subtracao = subtrair_dez    # repare a ausência de parênteses para jogar valor na variável
+
+subtracao()   # chamada da função (com o nome da variável? ou da função? Verificar)
+
+
+# Exemplo 5 - Cumprimento personalizado
+print('Função: oi_fulano')
+def oi_fulano():
+    nome = str(input("Digite seu nome: "))
+    if nome:
+        print(f'Como vai {nome}')
+    else:
+        print('Bom! Não quer falar? Como vai Fulano\n')
+    return    # Apenas para ilustrar. Não há necessidade deste retorno. (exemplo: não armazena em variáveis)
+
+
+################## CONTINUAR TRAZENDO PARA ESTE BLOCO OS CÓDIGOS ABAIXO ##################################
+
 
 # FUNÇÕES COM RETORNO
 
